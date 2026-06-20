@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTU CGPA & Percentage Calculator</title>
+  <meta name="description"
+    content="A modern, responsive CGPA and Percentage Calculator designed for KTU B.Tech students. Track your academic performance easily.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Theme and Background Enhancements -->
+  <div class="glow-bg">
+    <div class="glow-sphere glow-sphere-1"></div>
+    <div class="glow-sphere glow-sphere-2"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="logo-text">KTU <span class="accent-text">CGPA</span></span>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light/dark theme">
+        <!-- Sun Icon -->
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <main class="main-content">
+      <!-- Intro Section -->
+      <section class="intro-section">
+        <h1 class="main-title">Calculate Your KTU CGPA &amp; Percentage</h1>
+        <p class="subtitle">Quickly compute your overall cumulative grade point average and equivalent percentage using
+          the official KTU conversion formula.</p>
+      </section>
+
+      <!-- Calculator Section -->
+      <div class="calculator-grid">
+        <!-- Input Panel -->
+        <section class="panel input-panel">
+          <div class="panel-header">
+            <h2>Enter Semester SGPAs</h2>
+            <button class="btn-clear" id="btnClear" type="button">Reset</button>
+          </div>
+
+          <!-- Calculation Mode Switch -->
+          <div class="mode-selector-container">
+            <span class="mode-label">Calculation Mode:</span>
+            <div class="mode-tabs">
+              <button class="mode-tab active" data-mode="ktu" id="modeKtu">KTU B.Tech Scheme</button>
+              <button class="mode-tab" data-mode="simple" id="modeSimple">Simple Average</button>
+            </div>
+          </div>
+
+          <form id="cgpaForm" class="sgpa-form">
+            <div class="inputs-grid">
+              <!-- S1 Input -->
+              <div class="input-card" data-semester="1">
+                <div class="input-header">
+                  <label for="s1-sgpa">Semester 1</label>
+                  <span class="credit-badge" id="s1-credit-label">Credits: 17</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s1-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 1 SGPA">
+                  <input type="number" id="s1-credit" class="credit-input hidden" value="17" min="1" max="30"
+                    aria-label="Semester 1 Credits">
+                </div>
+              </div>
+
+              <!-- S2 Input -->
+              <div class="input-card" data-semester="2">
+                <div class="input-header">
+                  <label for="s2-sgpa">Semester 2</label>
+                  <span class="credit-badge" id="s2-credit-label">Credits: 21</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s2-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 2 SGPA">
+                  <input type="number" id="s2-credit" class="credit-input hidden" value="21" min="1" max="30"
+                    aria-label="Semester 2 Credits">
+                </div>
+              </div>
+
+              <!-- S3 Input -->
+              <div class="input-card" data-semester="3">
+                <div class="input-header">
+                  <label for="s3-sgpa">Semester 3</label>
+                  <span class="credit-badge" id="s3-credit-label">Credits: 22</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s3-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 3 SGPA">
+                  <input type="number" id="s3-credit" class="credit-input hidden" value="22" min="1" max="30"
+                    aria-label="Semester 3 Credits">
+                </div>
+              </div>
+
+              <!-- M4 Input -->
+              <div class="input-card" data-semester="4">
+                <div class="input-header">
+                  <label for="s4-sgpa">Semester 4</label>
+                  <span class="credit-badge" id="s4-credit-label">Credits: 22</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s4-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 4 SGPA">
+                  <input type="number" id="s4-credit" class="credit-input hidden" value="22" min="1" max="30"
+                    aria-label="Semester 4 Credits">
+                </div>
+              </div>
+
+              <!-- S5 Input -->
+              <div class="input-card" data-semester="5">
+                <div class="input-header">
+                  <label for="s5-sgpa">Semester 5</label>
+                  <span class="credit-badge" id="s5-credit-label">Credits: 23</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s5-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 5 SGPA">
+                  <input type="number" id="s5-credit" class="credit-input hidden" value="23" min="1" max="30"
+                    aria-label="Semester 5 Credits">
+                </div>
+              </div>
+
+              <!-- S6 Input -->
+              <div class="input-card" data-semester="6">
+                <div class="input-header">
+                  <label for="s6-sgpa">Semester 6</label>
+                  <span class="credit-badge" id="s6-credit-label">Credits: 22</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s6-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 6 SGPA">
+                  <input type="number" id="s6-credit" class="credit-input hidden" value="22" min="1" max="30"
+                    aria-label="Semester 6 Credits">
+                </div>
+              </div>
+
+              <!-- S7 Input -->
+              <div class="input-card" data-semester="7">
+                <div class="input-header">
+                  <label for="s7-sgpa">Semester 7</label>
+                  <span class="credit-badge" id="s7-credit-label">Credits: 15</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s7-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 7 SGPA">
+                  <input type="number" id="s7-credit" class="credit-input hidden" value="15" min="1" max="30"
+                    aria-label="Semester 7 Credits">
+                </div>
+              </div>
+
+              <!-- S8 Input -->
+              <div class="input-card" data-semester="8">
+                <div class="input-header">
+                  <label for="s8-sgpa">Semester 8</label>
+                  <span class="credit-badge" id="s8-credit-label">Credits: 18</span>
+                </div>
+                <div class="input-group">
+                  <input type="number" id="s8-sgpa" class="sgpa-input" min="0" max="10" step="0.01" placeholder="SGPA"
+                    aria-label="Semester 8 SGPA">
+                  <input type="number" id="s8-credit" class="credit-input hidden" value="18" min="1" max="30"
+                    aria-label="Semester 8 Credits">
+                </div>
+              </div>
+            </div>
+
+            <div class="info-tip">
+              <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Leave semesters blank if you haven't completed them yet. The calculation will update automatically
+                based on entered SGPAs.</span>
+            </div>
+          </form>
+        </section>
+
+        <!-- Result Panel -->
+        <section class="panel result-panel">
+          <div class="results-card" id="resultsCard">
+            <h2 class="results-card-title">Academic Summary</h2>
+
+            <!-- Dynamic Gauge / Progress circle -->
+            <div class="visual-gauge-container">
+              <svg class="gauge-svg" viewBox="0 0 200 200">
+                <defs>
+                  <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1" />
+                    <stop offset="50%" stop-color="#8b5cf6" />
+                    <stop offset="100%" stop-color="#d946ef" />
+                  </linearGradient>
+                </defs>
+                <circle class="gauge-track" cx="100" cy="100" r="85" stroke-width="12"></circle>
+                <circle class="gauge-fill" id="gaugeFill" cx="100" cy="100" r="85" stroke-width="12"
+                  stroke-dasharray="534" stroke-dashoffset="534" stroke-linecap="round"></circle>
+              </svg>
+              <div class="gauge-text-container">
+                <div class="gauge-value" id="cgpaVal">0.00</div>
+                <div class="gauge-label">CGPA</div>
+              </div>
+            </div>
+
+            <!-- Detailed Stats Grid -->
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-label">Percentage</span>
+                <span class="stat-value" id="percentVal">0.00%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Semesters Completed</span>
+                <span class="stat-value" id="semestersCountVal">0</span>
+              </div>
+              <div class="stat-item credit-stat">
+                <span class="stat-label">Total Credits</span>
+                <span class="stat-value" id="totalCreditsVal">0</span>
+              </div>
+            </div>
+
+            <!-- Formula Reference Card -->
+            <div class="formula-card">
+              <div class="formula-header">Percentage Conversion Formula</div>
+              <div class="formula-body">Percentage = (CGPA - 0.75) × 10</div>
+            </div>
+
+            <!-- Built for Digital Heroes Call to Action -->
+            <div class="cta-wrapper">
+              <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer" class="btn-cta"
+                id="btnDigitalHeroes">
+                <span>Built for Digital Heroes</span>
+                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <div class="developer-info">
+          <div class="dev-item">
+            <span class="dev-label">Full Name</span>
+            <span class="dev-value">Alan Johnson</span>
+          </div>
+          <div class="dev-divider"></div>
+          <div class="dev-item">
+            <span class="dev-label">Email</span>
+            <a href="mailto:alanjohnsonaj247@gmail.com" class="dev-value dev-link">alanjohnsonaj247@gmail.com</a>
+          </div>
+        </div>
+        <p class="copyright">&copy; 2026 KTU CGPA &amp; Percentage Calculator. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>
